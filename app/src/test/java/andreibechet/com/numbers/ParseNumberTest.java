@@ -2,14 +2,14 @@ package andreibechet.com.numbers;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ParseNumberTest {
 
     public static final Integer SOME_NUMBER = 140;
     public static final Integer SOME_OTHER_NUMBER = 150;
     public static final Integer ZERO = 0;
-    public static final Integer NEGATIVE = -2;
+    public static final Integer NEGATIVE_NUMBER = -2;
 
     @Test
     public void shouldComputeTheSection() {
@@ -27,13 +27,25 @@ public class ParseNumberTest {
 
         assertEquals("The session was not computed correctly",
                 ParseNumber.Session.Session3,
-                new ParseNumber(NEGATIVE).session);
+                new ParseNumber(NEGATIVE_NUMBER).session);
     }
 
     @Test
     public void shouldComputeTheItemNumber() {
-        assertEquals("The session was not computed correctly",
+        assertEquals("The item number was not computed correctly",
                 ParseNumber.ItemNumber.Item4,
                 new ParseNumber(SOME_NUMBER).itemNumber);
+
+        assertEquals("The item number was not computed correctly",
+                ParseNumber.ItemNumber.Item6,
+                new ParseNumber(SOME_OTHER_NUMBER).itemNumber);
+
+        assertEquals("The item number was not computed correctly",
+                ParseNumber.ItemNumber.Item1,
+                new ParseNumber(ZERO).itemNumber);
+
+        assertEquals("The item number was not computed correctly",
+                ParseNumber.ItemNumber.InvalidItemNumber,
+                new ParseNumber(NEGATIVE_NUMBER).itemNumber);
     }
 }
