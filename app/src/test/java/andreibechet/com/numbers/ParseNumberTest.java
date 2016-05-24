@@ -48,4 +48,19 @@ public class ParseNumberTest {
                 ParseNumber.ItemNumber.InvalidItemNumber,
                 new ParseNumber(NEGATIVE_NUMBER).itemNumber);
     }
+
+    @Test
+    public void shouldComputeIfCheckmarkIsSetOrNot() {
+        assertEquals("The item number was not computed correctly",
+                Boolean.TRUE,
+                new ParseNumber(SOME_NUMBER).checked);
+
+        assertEquals("The item number was not computed correctly",
+                Boolean.TRUE,
+                new ParseNumber(SOME_OTHER_NUMBER).checked);
+
+        assertEquals("The item number was not computed correctly",
+                Boolean.FALSE,
+                new ParseNumber(ZERO).checked);
+    }
 }

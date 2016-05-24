@@ -3,9 +3,11 @@ package andreibechet.com.numbers;
 public class ParseNumber {
     public static final int LEAST_SIGNIFICANT_2_BITS = 0x00000003;
     public static final int LEAST_SIGNIFICANT_2_to_6_BITS = 0x0000007c;
+    public static final int LEAST_SIGNIFICANT_7th_BITS = 0x00000080;
 
     public final Session session;
     public final ItemNumber itemNumber;
+    public final Boolean checked;
 
     public ParseNumber(Integer number) {
         Session session;
@@ -23,6 +25,8 @@ public class ParseNumber {
             itemNumber = ItemNumber.InvalidItemNumber;
         }
         this.itemNumber = itemNumber;
+
+        checked = (number & LEAST_SIGNIFICANT_7th_BITS) >> 7 == 1;
     }
 
     public enum Session {
