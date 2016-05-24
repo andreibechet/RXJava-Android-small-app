@@ -32,4 +32,13 @@ public class ParseNumberTest {
                 ParseNumber.Session.Session3,
                 parseNegative.session);
     }
+
+    @Test
+    public void shouldComputeTheItemNumber() {
+        Integer someNumber = 140;
+        ParseNumber parseNumber = new ParseNumber(someNumber);
+        assertEquals("The session was not computed correctly",
+                ParseNumber.ItemNumber.Item4,
+                parseNumber.itemNumber);
+    }
 }
