@@ -13,27 +13,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import andreibechet.com.configuration.Configurations;
+
 public class GetsNumbers {
-    public static final String APP_LOG_TAG = "NumbersApp";
-    public static final String EXCEPTION_TAG = "Exception";
     public final List<Integer> numbers = new ArrayList<>();
 
     public GetsNumbers(String httpAddress) {
         try {
             extractNumbersFrom(httpConnectionFrom(new URL(httpAddress)));
-        } catch (IOException e) {
-            Log.e(APP_LOG_TAG, EXCEPTION_TAG, e);
+        } catch (Exception e) {
+            Log.e(Configurations.APP_LOG_TAG, Configurations.EXCEPTION_TAG, e);
         }
     }
 
-    private void extractNumbersFrom(HttpURLConnection connection) throws IOException {
+    private void extractNumbersFrom(HttpURLConnection connection) throws IOException, JSONException {
         try {
             JSONArray jsonArray = new JSONObject(jsonStringFrom(connection.getInputStream())).getJSONArray("numbers");
             for (int i = 0; i < jsonArray.length(); i++) {
                 numbers.add(jsonArray.getInt(i));
             }
-        } catch (JSONException e) {
-            Log.e(APP_LOG_TAG, EXCEPTION_TAG, e);
         } finally {
             connection.disconnect();
         }
