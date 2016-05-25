@@ -36,6 +36,12 @@ public class Section implements Comparable<Section>  {
 
     }
 
+    public void add(List<Item> items) {
+        for (Item item: items) {
+            add(item);
+        }
+    }
+
     private void removeItemWithItemNumberSameAs(Item item) {
         for (Item it: items) {
             if (it.itemNumber.equals(item.itemNumber))

@@ -28,8 +28,7 @@ public class Sections {
     private void updateItemsForSectionNumber(Section.SectionNumber sectionNumber, List<Item> items) {
         for (Section s: sections) {
             if (s.sectionNumber.equals(sectionNumber))
-                for (Item item: items)
-                    s.add(item);
+                s.add(items);
         }
     }
 
