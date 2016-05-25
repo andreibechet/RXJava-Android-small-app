@@ -30,8 +30,17 @@ public class Section implements Comparable<Section>  {
     }
 
     public void add(Item item) {
+        removeItemWithItemNumberSameAs(item);
         items.add(item);
         sortItemsAscending();
+
+    }
+
+    private void removeItemWithItemNumberSameAs(Item item) {
+        for (Item it: items) {
+            if (it.itemNumber.equals(item.itemNumber))
+                items.remove(it);
+        }
     }
 
     private void sortItemsAscending() {

@@ -33,4 +33,13 @@ public class SectionTest {
         assertEquals("Both lists should be empty", expected, emptySection.sortedItems());
     }
 
+    @Test
+    public void shouldReplaceItemIfItAlreadyExists() {
+        someSection.add(new Item(Item.ItemNumber.Item1, false));
+        List<Item> expected = new ArrayList<>();
+        expected.add(new Item(Item.ItemNumber.Item1, false));
+        expected.add(new Item(Item.ItemNumber.Item2, false));
+        assertEquals("The list is not ordered", expected, someSection.sortedItems());
+    }
+
 }
