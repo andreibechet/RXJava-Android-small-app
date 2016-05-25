@@ -1,39 +1,52 @@
 package andreibechet.com.numbers;
 
 public class ParseNumber {
-    public static final int LEAST_SIGNIFICANT_2_BITS = 0x00000003;
-    public static final int LEAST_SIGNIFICANT_2_to_6_BITS = 0x0000007c;
-    public static final int LEAST_SIGNIFICANT_7th_BITS = 0x00000080;
+    public static final int LEAST_SIGNIFICANT_2_BITS_MAP = 0x00000003;
+    public static final int LEAST_SIGNIFICANT_2nd_to_6th_BITS_MAP = 0x0000007c;
+    public static final int LEAST_SIGNIFICANT_7th_BITS_MAP = 0x00000080;
 
-    public final Session session;
+    public final SectionNumber sectionNumber;
     public final ItemNumber itemNumber;
     public final Boolean checked;
 
     public ParseNumber(Integer number) {
-        Session session;
-        try {
-            session = Session.values()[number & LEAST_SIGNIFICANT_2_BITS];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            session = Session.InvalidSession;
-        }
-        this.session = session;
+        sectionNumber = session(number);
+        itemNumber = itemNumber(number);
+        checked = checked(number);
+    }
 
+    private boolean checked(Integer number) {
+        int numberFormedOf7thBit = (number & LEAST_SIGNIFICANT_7th_BITS_MAP) >> 7;
+        return numberFormedOf7thBit == 1;
+    }
+
+    private ItemNumber itemNumber(Integer number) {
         ItemNumber itemNumber;
         try {
-            itemNumber = ItemNumber.values()[(number & LEAST_SIGNIFICANT_2_to_6_BITS) >> 2];
+            int numberFormedOfBits2Till6 = (number & LEAST_SIGNIFICANT_2nd_to_6th_BITS_MAP) >> 2;
+            itemNumber = ItemNumber.values()[numberFormedOfBits2Till6];
         } catch (ArrayIndexOutOfBoundsException e) {
             itemNumber = ItemNumber.InvalidItemNumber;
         }
-        this.itemNumber = itemNumber;
-
-        checked = (number & LEAST_SIGNIFICANT_7th_BITS) >> 7 == 1;
+        return itemNumber;
     }
 
-    public enum Session {
-        Session1(0), Session2(1), Session3(2), Session4(3), InvalidSession(-1);
+    private SectionNumber session(Integer number) {
+        SectionNumber sectionNumber;
+        try {
+            int numberFormedOfLastSignificant2Bits = number & LEAST_SIGNIFICANT_2_BITS_MAP;
+            sectionNumber = SectionNumber.values()[numberFormedOfLastSignificant2Bits];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            sectionNumber = SectionNumber.InvalidSection;
+        }
+        return sectionNumber;
+    }
+
+    public enum SectionNumber {
+        Section1(0), Section2(1), Section3(2), Section4(3), InvalidSection(-1);
         private final int value;
 
-        Session(int i) {
+        SectionNumber(int i) {
             value = i;
         }
 

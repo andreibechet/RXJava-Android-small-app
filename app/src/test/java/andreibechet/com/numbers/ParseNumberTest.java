@@ -13,21 +13,21 @@ public class ParseNumberTest {
 
     @Test
     public void shouldComputeTheSection() {
-        assertEquals("The session was not computed correctly",
-                ParseNumber.Session.Session1,
-                new ParseNumber(SOME_NUMBER).session);
+        assertEquals("The section number was not computed correctly",
+                ParseNumber.SectionNumber.Section1,
+                new ParseNumber(SOME_NUMBER).sectionNumber);
 
-        assertEquals("The session was not computed correctly",
-                ParseNumber.Session.Session3,
-                new ParseNumber(SOME_OTHER_NUMBER).session);
+        assertEquals("The section number was not computed correctly",
+                ParseNumber.SectionNumber.Section3,
+                new ParseNumber(SOME_OTHER_NUMBER).sectionNumber);
 
-        assertEquals("The session was not computed correctly",
-                ParseNumber.Session.Session1,
-                new ParseNumber(ZERO).session);
+        assertEquals("The section number was not computed correctly",
+                ParseNumber.SectionNumber.Section1,
+                new ParseNumber(ZERO).sectionNumber);
 
-        assertEquals("The session was not computed correctly",
-                ParseNumber.Session.Session3,
-                new ParseNumber(NEGATIVE_NUMBER).session);
+        assertEquals("The section number was not computed correctly",
+                ParseNumber.SectionNumber.Section3,
+                new ParseNumber(NEGATIVE_NUMBER).sectionNumber);
     }
 
     @Test
