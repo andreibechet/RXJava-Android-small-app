@@ -18,7 +18,7 @@ import andreibechet.com.configuration.Configurations;
 public class GetsNumbers {
     public final List<Integer> numbers = new ArrayList<>();
 
-    public GetsNumbers(String httpAddress) {
+    public GetsNumbers(final String httpAddress) {
         try {
             extractNumbersFrom(httpConnectionFrom(new URL(httpAddress)));
         } catch (Exception e) {
@@ -26,7 +26,7 @@ public class GetsNumbers {
         }
     }
 
-    private void extractNumbersFrom(HttpURLConnection connection) throws IOException, JSONException {
+    private void extractNumbersFrom(final HttpURLConnection connection) throws IOException, JSONException {
         try {
             JSONArray jsonArray = new JSONObject(jsonStringFrom(connection.getInputStream())).getJSONArray("numbers");
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -37,7 +37,7 @@ public class GetsNumbers {
         }
     }
 
-    private String jsonStringFrom(InputStream in) throws IOException {
+    private String jsonStringFrom(final InputStream in) throws IOException {
         byte[] bytes = new byte[1000];
         StringBuilder jsonStringBuilder = new StringBuilder();
         int numRead;
@@ -47,7 +47,7 @@ public class GetsNumbers {
         return jsonStringBuilder.toString();
     }
 
-    private HttpURLConnection httpConnectionFrom(URL url) throws IOException {
+    private HttpURLConnection httpConnectionFrom(final URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setReadTimeout(15001);
         connection.setConnectTimeout(15001);

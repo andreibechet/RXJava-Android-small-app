@@ -19,7 +19,7 @@ public class Item implements Comparable<Item> {
         }
     }
 
-    public Item(ItemNumber itemNumber, Boolean checked) {
+    public Item(final ItemNumber itemNumber, final Boolean checked) {
         this.itemNumber = itemNumber;
         this.checked = checked;
     }
@@ -35,11 +35,11 @@ public class Item implements Comparable<Item> {
 
     }
 
-    private boolean areBothItemsCheckedOrNot(Item item) {
+    private boolean areBothItemsCheckedOrNot(final Item item) {
         return checked != null ? checked.equals(item.checked) : item.checked == null;
     }
 
-    private boolean areItemNumbersEqual(Item item) {
+    private boolean areItemNumbersEqual(final Item item) {
         return itemNumber.getValue() == item.itemNumber.getValue();
     }
 

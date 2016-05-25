@@ -8,7 +8,7 @@ import java.util.List;
 public class Sections {
     private final List<Section> sections = new ArrayList<>();
 
-    public void add(Section section) {
+    public void add(final Section section) {
         sections.add(section);
         sortSectionsAscending();
     }

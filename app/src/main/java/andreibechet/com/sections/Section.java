@@ -25,7 +25,7 @@ public class Section implements Comparable<Section>  {
     }
 
 
-    public Section(SectionNumber sectionNumber) {
+    public Section(final SectionNumber sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
 

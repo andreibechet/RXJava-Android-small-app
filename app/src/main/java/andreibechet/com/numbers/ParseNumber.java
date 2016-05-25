@@ -12,18 +12,18 @@ public class ParseNumber {
     public final Item.ItemNumber itemNumber;
     public final Boolean checked;
 
-    public ParseNumber(Integer number) {
+    public ParseNumber(final Integer number) {
         sectionNumber = session(number);
         itemNumber = itemNumber(number);
         checked = checked(number);
     }
 
-    private boolean checked(Integer number) {
+    private boolean checked(final Integer number) {
         int numberFormedOf7thBit = (number & LEAST_SIGNIFICANT_7th_BITS_MAP) >> 7;
         return numberFormedOf7thBit == 1;
     }
 
-    private Item.ItemNumber itemNumber(Integer number) {
+    private Item.ItemNumber itemNumber(final Integer number) {
         Item.ItemNumber itemNumber;
         try {
             int numberFormedOfBits2Till6 = (number & LEAST_SIGNIFICANT_2nd_to_6th_BITS_MAP) >> 2;
@@ -34,7 +34,7 @@ public class ParseNumber {
         return itemNumber;
     }
 
-    private Section.SectionNumber session(Integer number) {
+    private Section.SectionNumber session(final Integer number) {
         Section.SectionNumber sectionNumber;
         try {
             int numberFormedOfLastSignificant2Bits = number & LEAST_SIGNIFICANT_2_BITS_MAP;
