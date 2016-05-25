@@ -12,11 +12,10 @@ import static org.junit.Assert.assertEquals;
 
 public class SectionTest {
 
-    private Section someSection;
+    private final Section someSection = new Section(ParseNumber.SectionNumber.Section1);
 
     @Before
     public void setup() {
-        someSection = new Section(ParseNumber.SectionNumber.Section1);
         someSection.add(new Item(ParseNumber.ItemNumber.Item2, false));
         someSection.add(new Item(ParseNumber.ItemNumber.Item1, true));
     }
