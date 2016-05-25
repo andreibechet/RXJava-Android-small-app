@@ -9,7 +9,10 @@ public class Sections {
     private final List<Section> sections = new ArrayList<>();
 
     public void add(final Section section) {
-        if (sectionNumberAlreadyExists(section)) return;
+        if (sectionNumberAlreadyExists(section)) {
+            updateItemsForSectionNumber(section.sectionNumber, section.sortedItems());
+            return;
+        }
         sections.add(section);
         sortSectionsAscending();
     }
@@ -20,6 +23,14 @@ public class Sections {
                 return true;
         }
         return false;
+    }
+
+    private void updateItemsForSectionNumber(Section.SectionNumber sectionNumber, List<Item> items) {
+        for (Section s: sections) {
+            if (s.sectionNumber.equals(sectionNumber))
+                for (Item item: items)
+                    s.add(item);
+        }
     }
 
     private void sortSectionsAscending() {

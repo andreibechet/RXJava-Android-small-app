@@ -68,7 +68,7 @@ public class Section implements Comparable<Section>  {
 
         Section section = (Section) o;
 
-        return sectionNumber == section.sectionNumber;
+        return sectionNumber.equals(section.sectionNumber) && items.equals(section.items);
 
     }
 
