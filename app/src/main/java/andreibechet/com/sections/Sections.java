@@ -9,8 +9,17 @@ public class Sections {
     private final List<Section> sections = new ArrayList<>();
 
     public void add(final Section section) {
+        if (sectionNumberAlreadyExists(section)) return;
         sections.add(section);
         sortSectionsAscending();
+    }
+
+    private boolean sectionNumberAlreadyExists(Section section) {
+        for (Section s: sections) {
+            if (s.sectionNumber.equals(section.sectionNumber))
+                return true;
+        }
+        return false;
     }
 
     private void sortSectionsAscending() {

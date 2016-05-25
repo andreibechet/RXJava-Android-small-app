@@ -25,4 +25,15 @@ public class SectionsTest {
         expected.add(new Section(Section.SectionNumber.Section2));
         assertEquals("The list is not ordered", expected, sections.sortedSections());
     }
+
+    @Test
+    public void shouldNotAddTheSameSectionMultipleTimes() {
+        Section section = new Section(Section.SectionNumber.Section1);
+        section.add(new Item(Item.ItemNumber.Item1, true));
+        sections.add(section);
+        List<Section> expected = new ArrayList<>();
+        expected.add(new Section(Section.SectionNumber.Section1));
+        expected.add(new Section(Section.SectionNumber.Section2));
+        assertEquals("The list is not ordered", expected, sections.sortedSections());
+    }
 }
