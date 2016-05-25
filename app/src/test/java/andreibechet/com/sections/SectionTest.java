@@ -31,9 +31,9 @@ public class SectionTest {
 
     @Test
     public void shouldReturnEmptyListIfItContainsNoItems() {
-        Section empty = new Section(ParseNumber.SectionNumber.Section2);
+        Section emptySection = new Section(ParseNumber.SectionNumber.Section2);
         List<Item> expected = new ArrayList<>();
-        assertEquals("Both lists should be empty", expected, empty.sortedItems());
+        assertEquals("Both lists should be empty", expected, emptySection.sortedItems());
     }
 
 }

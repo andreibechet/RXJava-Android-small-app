@@ -20,9 +20,16 @@ public class Item implements Comparable<Item> {
 
         Item item = (Item) o;
 
-        return itemNumber.getValue() == item.itemNumber.getValue() &&
-                (checked != null ? checked.equals(item.checked) : item.checked == null);
+        return areItemNumbersEqual(item) && areBothItemsCheckedOrNot(item);
 
+    }
+
+    private boolean areBothItemsCheckedOrNot(Item item) {
+        return checked != null ? checked.equals(item.checked) : item.checked == null;
+    }
+
+    private boolean areItemNumbersEqual(Item item) {
+        return itemNumber.getValue() == item.itemNumber.getValue();
     }
 
     @Override
