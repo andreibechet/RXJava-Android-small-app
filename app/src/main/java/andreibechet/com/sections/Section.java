@@ -7,16 +7,27 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import andreibechet.com.numbers.ParseNumber;
-
 public class Section implements Comparable<Section>  {
-    public final ParseNumber.SectionNumber sectionNumber;
+    public final SectionNumber sectionNumber;
     private final List<Item> items = new ArrayList<>();
 
-    public Section(ParseNumber.SectionNumber sectionNumber) {
-        this.sectionNumber = sectionNumber;
+    public enum SectionNumber {
+        Section1(0), Section2(1), Section3(2), Section4(3), InvalidSection(-1);
+        private final int value;
+
+        SectionNumber(int i) {
+            value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
+
+    public Section(SectionNumber sectionNumber) {
+        this.sectionNumber = sectionNumber;
+    }
 
     public void add(Item item) {
         items.add(item);

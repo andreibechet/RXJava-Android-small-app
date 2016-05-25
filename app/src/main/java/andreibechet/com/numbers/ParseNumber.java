@@ -1,12 +1,15 @@
 package andreibechet.com.numbers;
 
+import andreibechet.com.sections.Item;
+import andreibechet.com.sections.Section;
+
 public class ParseNumber {
     public static final int LEAST_SIGNIFICANT_2_BITS_MAP = 0x00000003;
     public static final int LEAST_SIGNIFICANT_2nd_to_6th_BITS_MAP = 0x0000007c;
     public static final int LEAST_SIGNIFICANT_7th_BITS_MAP = 0x00000080;
 
-    public final SectionNumber sectionNumber;
-    public final ItemNumber itemNumber;
+    public final Section.SectionNumber sectionNumber;
+    public final Item.ItemNumber itemNumber;
     public final Boolean checked;
 
     public ParseNumber(Integer number) {
@@ -20,51 +23,26 @@ public class ParseNumber {
         return numberFormedOf7thBit == 1;
     }
 
-    private ItemNumber itemNumber(Integer number) {
-        ItemNumber itemNumber;
+    private Item.ItemNumber itemNumber(Integer number) {
+        Item.ItemNumber itemNumber;
         try {
             int numberFormedOfBits2Till6 = (number & LEAST_SIGNIFICANT_2nd_to_6th_BITS_MAP) >> 2;
-            itemNumber = ItemNumber.values()[numberFormedOfBits2Till6];
+            itemNumber = Item.ItemNumber.values()[numberFormedOfBits2Till6];
         } catch (ArrayIndexOutOfBoundsException e) {
-            itemNumber = ItemNumber.InvalidItemNumber;
+            itemNumber = Item.ItemNumber.InvalidItemNumber;
         }
         return itemNumber;
     }
 
-    private SectionNumber session(Integer number) {
-        SectionNumber sectionNumber;
+    private Section.SectionNumber session(Integer number) {
+        Section.SectionNumber sectionNumber;
         try {
             int numberFormedOfLastSignificant2Bits = number & LEAST_SIGNIFICANT_2_BITS_MAP;
-            sectionNumber = SectionNumber.values()[numberFormedOfLastSignificant2Bits];
+            sectionNumber = Section.SectionNumber.values()[numberFormedOfLastSignificant2Bits];
         } catch (ArrayIndexOutOfBoundsException e) {
-            sectionNumber = SectionNumber.InvalidSection;
+            sectionNumber = Section.SectionNumber.InvalidSection;
         }
         return sectionNumber;
     }
 
-    public enum SectionNumber {
-        Section1(0), Section2(1), Section3(2), Section4(3), InvalidSection(-1);
-        private final int value;
-
-        SectionNumber(int i) {
-            value = i;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
-    public enum ItemNumber {
-        Item1(0), Item2(1), Item3(2), Item4(3), Item5(4), Item6(5), InvalidItemNumber(-1);
-        private final int value;
-
-        ItemNumber(int i) {
-            value = i;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 }

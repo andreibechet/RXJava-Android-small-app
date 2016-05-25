@@ -6,8 +6,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import andreibechet.com.numbers.ParseNumber;
-
 import static org.junit.Assert.assertEquals;
 
 public class SectionsTest {
@@ -15,16 +13,16 @@ public class SectionsTest {
 
     @Before
     public void setUp() throws Exception {
-        sections.add(new Section(ParseNumber.SectionNumber.Section2));
-        sections.add(new Section(ParseNumber.SectionNumber.Section1));
+        sections.add(new Section(Section.SectionNumber.Section2));
+        sections.add(new Section(Section.SectionNumber.Section1));
     }
 
 
     @Test
     public void shouldReturnOrderedListOfSectionsByTheirSectionNumber() {
         List<Section> expected = new ArrayList<>();
-        expected.add(new Section(ParseNumber.SectionNumber.Section1));
-        expected.add(new Section(ParseNumber.SectionNumber.Section2));
+        expected.add(new Section(Section.SectionNumber.Section1));
+        expected.add(new Section(Section.SectionNumber.Section2));
         assertEquals("The list is not ordered", expected, sections.sortedSections());
     }
 }

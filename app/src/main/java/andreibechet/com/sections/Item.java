@@ -2,13 +2,24 @@ package andreibechet.com.sections;
 
 import android.support.annotation.NonNull;
 
-import andreibechet.com.numbers.ParseNumber;
-
 public class Item implements Comparable<Item> {
-    public final ParseNumber.ItemNumber itemNumber;
+    public final ItemNumber itemNumber;
     public final Boolean checked;
 
-    public Item(ParseNumber.ItemNumber itemNumber, Boolean checked) {
+    public enum ItemNumber {
+        Item1(0), Item2(1), Item3(2), Item4(3), Item5(4), Item6(5), InvalidItemNumber(-1);
+        private final int value;
+
+        ItemNumber(int i) {
+            value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    public Item(ItemNumber itemNumber, Boolean checked) {
         this.itemNumber = itemNumber;
         this.checked = checked;
     }
